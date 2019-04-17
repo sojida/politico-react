@@ -42,4 +42,6 @@ module.exports = {
     '^.+\\.js?$': 'babel-jest',
     '^.+\\.jsx?$': 'babel-jest',
   },
+  collectCoverage: true,
+  coverageReporters: ['json', 'html'],
 };
