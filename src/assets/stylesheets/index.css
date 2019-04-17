@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  border: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --primary: #3c9848;
+  --secondary: #17252a;
+  --tertiary: #def2f1;
+}

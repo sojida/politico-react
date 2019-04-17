@@ -14,6 +14,10 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader'],
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   resolve: {
@@ -23,6 +27,9 @@ module.exports = {
     path: `${__dirname}/public`,
     publicPath: '/',
     filename: 'bundle.js',
+  },
+  moduleNameMapper: {
+    '^.+\\.(css|less|scss)$': 'babel-jest',
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
