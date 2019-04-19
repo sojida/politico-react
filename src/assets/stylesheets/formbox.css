@@ -1,13 +1,16 @@
 .form-box-container {
   display: grid;
-  grid-template-rows: 20px 1fr 20px;
+  grid-template-rows: 50px 1fr 20px;
+  grid-template-columns: 20px minmax(280px, auto) 20px;
+  width: 100%;
 }
 
 .form-box {
   grid-row: 2/3;
+  grid-column: 2/3;
   background: #56755c;
   padding: 30px 100px;
-  max-width: 500px;
+  min-width: 280px;
   border-radius: 5px;
   margin: 20px auto;
 }

@@ -4,6 +4,9 @@
   text-shadow: none;
   color: #fff;
 }
+header {
+  width: 100%;
+}
 
 .logo a {
   text-decoration: none;
@@ -14,6 +17,7 @@ nav {
   display: flex;
   justify-content: space-around;
   padding: 10px;
+  width: 100%;
   font-weight: bold;
   background-color: var(--primary);
 }
