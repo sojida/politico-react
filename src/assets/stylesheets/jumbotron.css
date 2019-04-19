@@ -1,0 +1,26 @@
+.jumbotron {
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(224, 230, 226, 0.3),
+      rgba(10, 190, 34, 0.5)
+    ),
+    url('../images/e-Voting.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 400px;
+}
+
+.slogan-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  padding: 10px;
+}
+
+.slogan {
+  display: block;
+  color: #fff;
+  font-size: 3rem;
+  text-shadow: 0px 0px 4px #000000;
+  margin: 50% 0;
+}
