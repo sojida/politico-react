@@ -61,10 +61,8 @@ const boxes2 = [
 const Homepage = () => {
   return (
     <div>
-      <Header />
       <Jumbotron />
       <Homeinfo boxesOne={boxes1} boxesTwo={boxes2} />
-      <Footer />
     </div>
   );
 };

@@ -13,15 +13,15 @@ class Header extends Component {
       <header>
         <nav>
           <div className="logo">
-            <a href="./index.html">Politico</a>
+            <Link to="/">Politico</Link>
           </div>
 
           <div className="nav-content">
             <div className="nav-item hdr-vote">
-              <a href="#howToV">How To Vote</a>
+              <Link to="/#howToV">Vote</Link>
             </div>
             <div className="nav-item hdr-join">
-              <a href="#bcm-candidate">Become A Candidate</a>
+              <Link to="/#bcm-candidate">Candidate</Link>
             </div>
             <div className="nav-item signin">
               <Link to="/login">Sign In</Link>
