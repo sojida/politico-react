@@ -10,13 +10,8 @@ const Button = ({ value, className }) => {
 };
 
 Button.propTypes = {
-  value: PropTypes.string,
-  className: PropTypes.string,
-};
-
-Button.defaultProps = {
-  value: 'Button',
-  className: 'btn',
+  value: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 export default Button;

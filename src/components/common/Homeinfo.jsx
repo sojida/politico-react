@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HowToBox from './HowToBox';
-import Footer from './Footer';
 
 const Homeinfo = ({ boxesOne, boxesTwo }) => {
   return (
     <div>
-      <div className="info1">
+      <div className="info1" id="howToV">
         <div className="center">
           <h2>How To Vote</h2>
           <h5>Voting on this platform is so easy</h5>
@@ -23,7 +22,7 @@ const Homeinfo = ({ boxesOne, boxesTwo }) => {
         </div>
       </div>
 
-      <div className="info2">
+      <div className="info2" id="bcm-candidate">
         <div className="center">
           <h2>Become A Candidate</h2>
           <h5>Do you believe you can make a difference? Follow this steps:</h5>
@@ -44,13 +43,8 @@ const Homeinfo = ({ boxesOne, boxesTwo }) => {
 };
 
 Homeinfo.propTypes = {
-  boxesOne: PropTypes.arrayOf(PropTypes.object),
-  boxesTwo: PropTypes.arrayOf(PropTypes.object),
-};
-
-Homeinfo.defaultProps = {
-  boxesOne: [],
-  boxesTwo: [],
+  boxesOne: PropTypes.arrayOf(PropTypes.object).isRequired,
+  boxesTwo: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Homeinfo;
