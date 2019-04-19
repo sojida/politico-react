@@ -11,15 +11,9 @@ const HowToBox = ({ value, className, icon }) => {
 };
 
 HowToBox.propTypes = {
-  value: PropTypes.string,
-  className: PropTypes.string,
-  icon: PropTypes.string,
-};
-
-HowToBox.defaultProps = {
-  value: 'Button',
-  className: 'btn',
-  icon: 'fa',
+  value: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
 };
 
 export default HowToBox;

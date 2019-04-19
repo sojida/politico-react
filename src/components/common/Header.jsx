@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import '../assets/stylesheets/header.css';
+import { Link } from 'react-router-dom';
+import '../../assets/stylesheets/header.css';
 
 class Header extends Component {
   constructor(props) {
@@ -23,10 +24,10 @@ class Header extends Component {
               <a href="#bcm-candidate">Become A Candidate</a>
             </div>
             <div className="nav-item signin">
-              <a href="./signin.html">Sign In</a>
+              <Link to="/login">Sign In</Link>
             </div>
             <div className="nav-item signup">
-              <a href="./signup.html">Sign Up</a>
+              <Link to="/signup">Sign Up</Link>
             </div>
           </div>
         </nav>

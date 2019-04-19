@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
-import '../assets/stylesheets/jumbotron.css';
+import '../../assets/stylesheets/jumbotron.css';
 
 const Jumbotron = () => {
   return (
@@ -10,12 +11,12 @@ const Jumbotron = () => {
       </div>
 
       <div className="register">
-        <a href="signin.html">
+        <Link to="/login">
           <Button value="Sign In" className="signUp btn-margin-10" />
-        </a>
-        <a href="signup.html">
+        </Link>
+        <Link to="/signup">
           <Button value="Sign Up" className="signUp btn-margin-10" />
-        </a>
+        </Link>
       </div>
     </div>
   );
