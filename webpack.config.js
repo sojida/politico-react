@@ -18,6 +18,17 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jp(e*)g|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[hash]-[name].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -27,9 +38,6 @@ module.exports = {
     path: `${__dirname}/public`,
     publicPath: '/',
     filename: 'bundle.js',
-  },
-  moduleNameMapper: {
-    '^.+\\.(css|less|scss)$': 'babel-jest',
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
