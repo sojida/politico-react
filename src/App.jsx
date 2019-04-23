@@ -7,6 +7,7 @@ import Footer from './components/common/Footer';
 import Hompage from './components/Hompage';
 import SignupPage from './components/SignupPage';
 import LoginPage from './components/LoginPage';
+import UserPage from './components/UserPage';
 
 class App extends Component {
   state = {};
@@ -17,7 +18,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route path="/admin" component={UnderConstruction} />
-          <Route path="/user" component={UnderConstruction} />
+          <Route path="/user" component={UserPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/page-not-found" component={NotFound} />

@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@trendmicro/react-sidenav": "^0.4.5",
     "coveralls": "^3.0.3",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
@@ -67,7 +68,9 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-notify-toast": "^0.5.0",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "react-sidenav": "^3.1.9",
+    "styled-components": "^4.2.0"
   },
   "husky": {
     "hooks": {
