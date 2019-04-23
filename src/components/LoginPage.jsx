@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Input from './common/Input';
 import Button from './common/Button';
 import '../assets/stylesheets/formbox.css';
@@ -17,6 +17,8 @@ class Login extends Component {
         password: '',
       },
       loading: false,
+      redirect: false,
+      isAdmin: false,
     };
   }
 
@@ -29,16 +31,26 @@ class Login extends Component {
   handleClick = async () => {
     this.setState({ loading: true });
     const { loginDetatils } = this.state;
-    const result = await authServices.auth('login', loginDetatils);
+    const user = await authServices.auth('login', loginDetatils);
 
-    if (result.status >= 400) {
+    if (user.status >= 400) {
       this.setState({ loading: false });
-      notify.show(handleErrorMessage(result.error), 'error');
+      notify.show(handleErrorMessage(user.error), 'error');
+    }
+
+    if (user.status === 200) {
+      this.setState({ loading: true });
+      if (user.data[0].user.isadmin) {
+        this.setState({ isAdmin: true });
+      }
+      localStorage.setItem('token', user.data[0].token);
+      localStorage.setItem('user', JSON.stringify(user.data[0].user));
+      this.setState({ redirect: true });
     }
   };
 
   render() {
-    const { loginDetatils, loading } = this.state;
+    const { loginDetatils, loading, redirect, isAdmin } = this.state;
 
     return (
       <React.Fragment>
@@ -74,6 +86,8 @@ class Login extends Component {
             </p>
           </div>
         </div>
+        {isAdmin && redirect && <Redirect to="/admin" />}
+        {!isAdmin && redirect && <Redirect to="/user" />}
       </React.Fragment>
     );
   }

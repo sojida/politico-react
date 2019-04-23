@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Input from './common/Input';
 import Button from './common/Button';
 import Loader from './common/Loader';
@@ -20,6 +20,7 @@ class Signup extends Component {
         password: '',
       },
       loading: false,
+      redirect: false,
     };
   }
 
@@ -32,16 +33,23 @@ class Signup extends Component {
   handleClick = async () => {
     this.setState({ loading: true });
     const { signupDetatils } = this.state;
-    const result = await authServices.auth('signup', signupDetatils);
+    const user = await authServices.auth('signup', signupDetatils);
 
-    if (result.status >= 400) {
+    if (user.status >= 400) {
       this.setState({ loading: false });
-      notify.show(handleErrorMessage(result.error), 'error');
+      notify.show(handleErrorMessage(user.error), 'error');
+    }
+
+    if (user.status === 201) {
+      this.setState({ loading: true });
+      localStorage.setItem('token', user.data[0].token);
+      localStorage.setItem('user', JSON.stringify(user.data[0].user));
+      this.setState({ redirect: true });
     }
   };
 
   render() {
-    const { signupDetatils, loading } = this.state;
+    const { signupDetatils, loading, redirect } = this.state;
 
     return (
       <React.Fragment>
@@ -111,6 +119,7 @@ class Signup extends Component {
             </p>
           </div>
         </div>
+        {redirect && <Redirect to="/user" />}
       </React.Fragment>
     );
   }
