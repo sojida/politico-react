@@ -16,6 +16,8 @@ class App extends Component {
       <React.Fragment>
         <Header />
         <Switch>
+          <Route path="/admin" component={UnderConstruction} />
+          <Route path="/user" component={UnderConstruction} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/page-not-found" component={NotFound} />
