@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import Notifications, { notify } from 'react-notify-toast';
 import { Link } from 'react-router-dom';
 import Input from './common/Input';
 import Button from './common/Button';
 import '../assets/stylesheets/formbox.css';
 import Loader from './common/Loader';
-import Notification from './common/Notification';
 import authServices from '../services/auth.services';
 import handleErrorMessage from '../helpers/handleErrorMessage';
 
@@ -17,11 +17,6 @@ class Login extends Component {
         password: '',
       },
       loading: false,
-      notify: {
-        status: false,
-        message: 'errr',
-        type: 'error',
-      },
     };
   }
 
@@ -32,39 +27,23 @@ class Login extends Component {
   };
 
   handleClick = async () => {
+    this.setState({ loading: true });
     const { loginDetatils } = this.state;
-    const result = await authServices.login(
-      loginDetatils.email,
-      loginDetatils.password
-    );
+    const result = await authServices.auth('login', loginDetatils);
 
     if (result.status >= 400) {
-      this.setState({
-        notify: {
-          status: true,
-          message: handleErrorMessage(result.error),
-          type: 'error',
-        },
-      });
+      this.setState({ loading: false });
+      notify.show(handleErrorMessage(result.error), 'error');
     }
-
-    console.log(result);
-    // this.setState({ loading: true });
   };
 
   render() {
-    const { loginDetatils, loading, notify } = this.state;
+    const { loginDetatils, loading } = this.state;
 
     return (
       <React.Fragment>
         {loading && <Loader />}
-        {
-          <Notification
-            message={notify.message}
-            type={notify.type}
-            status={notify.status}
-          />
-        }
+        <Notifications />
         <div className="form-box-container">
           <div className="form-box">
             <h2>Sign In</h2>
