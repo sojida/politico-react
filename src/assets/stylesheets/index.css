@@ -6,12 +6,23 @@
 
 :root {
   --primary: #3c9848;
-  --secondary: #17252a;
+  --secondary: #587a5f;
   --tertiary: #def2f1;
 }
 
 .btn {
   background-color: #3c9848;
+  color: white;
+}
+
+.vote-btn {
+  background-color: #3c9848;
+  color: white;
+}
+
+.vote-btn:hover {
+  background-color: var(--secondary);
+  color: white;
 }
 
 a {
@@ -105,7 +116,7 @@ a {
 footer {
   display: flex;
   justify-content: center;
-  padding: 5px;
+  padding: 5px 0;
   font-weight: bold;
   background-color: var(--primary);
   color: #fff;
@@ -143,4 +154,78 @@ footer {
 .btn1:hover {
   background-color: white;
   color: var(--primary);
+}
+
+select {
+  height: 30px;
+  width: 250px;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+option {
+  text-align: center;
+}
+
+/**TABLES**/
+table {
+  border-collapse: collapse;
+  border-radius: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 20px auto;
+  text-align: center;
+  width: 80%;
+}
+
+th {
+  white-space: nowrap;
+  text-align: center;
+  background: #3c9848;
+  color: #fff;
+  width: 250px;
+  height: 50px;
+  padding: 5px 10px;
+}
+
+.serial-num {
+  width: 10px;
+}
+
+tr {
+  background-color: lightgrey;
+  border-bottom: 1px solid #ffffff;
+  border-radius: 3px;
+}
+
+tr:hover {
+  background-color: rgb(168, 167, 167);
+}
+
+td {
+  padding: 5px 10px;
+  width: 100px;
+  height: 40px;
+}
+
+td button {
+  padding: 5px 10px;
+  width: 100px;
+  height: 40px;
+}
+
+button i {
+  font-size: 1rem;
+}
+
+td img {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #3c9848;
+  border-radius: 50%;
 }

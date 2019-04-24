@@ -1,8 +1,6 @@
 import React from 'react';
-import Header from './common/Header';
 import Jumbotron from './common/Jumbotron';
 import Homeinfo from './common/Homeinfo';
-import Footer from './common/Footer';
 
 const boxes1 = [
   {

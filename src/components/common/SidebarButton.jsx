@@ -12,15 +12,15 @@ const SidebarButton = ({ value, className, iconClass, ...rest }) => {
   );
 };
 
-SidebarButton.defaultProps = {
-  onClick: () => 'clicked',
-};
-
 SidebarButton.propTypes = {
   value: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   iconClass: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
+};
+
+SidebarButton.defaultProps = {
+  className: 'tablink',
 };
 
 export default SidebarButton;
