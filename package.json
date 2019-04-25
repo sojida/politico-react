@@ -70,7 +70,8 @@
     "react-notify-toast": "^0.5.0",
     "react-router-dom": "^5.0.0",
     "react-sidenav": "^3.1.9",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "uniqid": "^5.0.3"
   },
   "husky": {
     "hooks": {
