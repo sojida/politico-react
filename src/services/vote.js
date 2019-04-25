@@ -17,6 +17,21 @@ const voteCandidate = data => {
     .catch(err => err);
 };
 
+const getMyVotes = data => {
+  return window
+    .fetch(`${url}/user_votes`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Authorization: localStorage.token,
+      },
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   voteCandidate,
+  getMyVotes,
 };
