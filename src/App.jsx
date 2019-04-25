@@ -10,12 +10,14 @@ import LoginPage from './components/LoginPage';
 import UserPage from './components/UserPage';
 
 class App extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   render() {
     return (
       <React.Fragment>
-        <Header />
         <Switch>
           <Route path="/admin" component={UnderConstruction} />
           <Route path="/user" component={UserPage} />

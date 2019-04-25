@@ -7,6 +7,7 @@ import '../assets/stylesheets/formbox.css';
 import Loader from './common/Loader';
 import authServices from '../services/auth.services';
 import handleErrorMessage from '../helpers/handleErrorMessage';
+import Header from './common/Header';
 
 class Login extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class Login extends Component {
       <React.Fragment>
         {loading && <Loader />}
         <Notifications />
+        <Header />
         <div className="form-box-container">
           <div className="form-box">
             <h2>Sign In</h2>
