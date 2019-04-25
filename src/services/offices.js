@@ -29,7 +29,22 @@ const getOfficeById = id => {
     .catch(err => err);
 };
 
+const getOfficeResultById = id => {
+  return window
+    .fetch(`${url}/office/${id}/vote_result`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Authorization: localStorage.token,
+      },
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   getAllOffices,
   getOfficeById,
+  getOfficeResultById,
 };
