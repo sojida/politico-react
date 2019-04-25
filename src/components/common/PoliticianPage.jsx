@@ -76,13 +76,7 @@ class PoliticianPage extends Component {
   };
 
   render() {
-    const {
-      party,
-      office,
-      selectedParty,
-      selectedOffice,
-      loading,
-    } = this.state;
+    const { selectedParty, selectedOffice, loading } = this.state;
     const partyElement = selectedParty.map(elm => (
       <table key={elm.id}>
         <tbody>

@@ -237,3 +237,71 @@ td img {
   border: 2px solid #3c9848;
   border-radius: 50%;
 }
+/**Profile Card**/
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+  width: 400px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  background: #587a5f;
+}
+
+.card h4 {
+  font-size: 1.3rem;
+  margin: 5px;
+}
+
+.card-container {
+  background: white;
+  color: black;
+  padding: 10px;
+}
+
+.card p {
+  font-size: 1rem;
+  margin: 5px;
+}
+
+.card input[type='file'] {
+  display: none;
+}
+
+.card .custom-file-upload {
+  font-size: 1rem;
+  margin: 10px 30px;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: transparent;
+  transition: 0.5s;
+  border: 2px solid #587a5f;
+}
+
+.card .custom-file-upload:hover {
+  background: #587a5f;
+  color: #fff;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8);
+}
+
+.card .img-container {
+  display: grid;
+  object-fit: cover;
+  overflow: hidden;
+  width: 400px;
+  height: 200px;
+}
+
+.card img {
+  border-radius: 50%;
+  width: auto;
+  height: 100%;
+  object-position: center;
+  justify-self: center;
+}
