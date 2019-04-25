@@ -15,6 +15,21 @@ const getAllOffices = () => {
     .catch(err => err);
 };
 
+const getOfficeById = id => {
+  return window
+    .fetch(`${url}/offices/${id}`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Authorization: localStorage.token,
+      },
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   getAllOffices,
+  getOfficeById,
 };

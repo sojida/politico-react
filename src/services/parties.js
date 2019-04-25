@@ -15,6 +15,21 @@ const getAllParties = () => {
     .catch(err => err);
 };
 
+const getPartiesById = id => {
+  return window
+    .fetch(`${url}/parties/${id}`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Authorization: localStorage.token,
+      },
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   getAllParties,
+  getPartiesById,
 };
