@@ -6,6 +6,7 @@ import Button from './common/Button';
 import Loader from './common/Loader';
 import authServices from '../services/auth.services';
 import handleErrorMessage from '../helpers/handleErrorMessage';
+import Header from './common/Header';
 import '../assets/stylesheets/formbox.css';
 
 class Signup extends Component {
@@ -55,6 +56,7 @@ class Signup extends Component {
       <React.Fragment>
         <Notifications />
         {loading && <Loader />}
+        <Header />
         <div className="form-box-container">
           <div className="form-box">
             <h2>Sign Up</h2>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Jumbotron from './common/Jumbotron';
 import Homeinfo from './common/Homeinfo';
+import Header from './common/Header';
 
 const boxes1 = [
   {
@@ -59,6 +60,7 @@ const boxes2 = [
 const Homepage = () => {
   return (
     <div>
+      <Header />
       <Jumbotron />
       <Homeinfo boxesOne={boxes1} boxesTwo={boxes2} />
     </div>
