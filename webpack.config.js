@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: {
+    index: './src/index.jsx',
+  },
   module: {
     rules: [
       {
@@ -38,11 +40,17 @@ module.exports = {
     path: `${__dirname}/public`,
     publicPath: '/',
     filename: 'bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     contentBase: './public',
     hot: true,
     historyApiFallback: true,
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
 };
