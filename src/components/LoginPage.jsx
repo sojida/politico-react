@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import authAction from '../actions/auth.actions';
 import Input from './common/Input';
 import Button from './common/Button';
 import '../assets/stylesheets/formbox.css';
 import Loader from './common/Loader';
-import authServices from '../services/auth.services';
-import handleErrorMessage from '../helpers/handleErrorMessage';
 import Header from './common/Header';
 
 class Login extends Component {
@@ -17,9 +18,6 @@ class Login extends Component {
         email: '',
         password: '',
       },
-      loading: false,
-      redirect: false,
-      isAdmin: false,
     };
   }
 
@@ -29,29 +27,16 @@ class Login extends Component {
     this.setState({ loginDetatils });
   };
 
-  handleClick = async () => {
-    this.setState({ loading: true });
+  handleClick = () => {
     const { loginDetatils } = this.state;
-    const user = await authServices.auth('login', loginDetatils);
-
-    if (user.status >= 400) {
-      this.setState({ loading: false });
-      notify.show(handleErrorMessage(user.error), 'error');
-    }
-
-    if (user.status === 200) {
-      this.setState({ loading: true });
-      if (user.data[0].user.isadmin) {
-        this.setState({ isAdmin: true });
-      }
-      localStorage.setItem('token', user.data[0].token);
-      localStorage.setItem('user', JSON.stringify(user.data[0].user));
-      this.setState({ redirect: true });
-    }
+    const { login } = this.props;
+    login(loginDetatils);
   };
 
   render() {
-    const { loginDetatils, loading, redirect, isAdmin } = this.state;
+    const { loginDetatils } = this.state;
+    const { auth } = this.props;
+    const { loading, redirect, isAdmin } = auth;
 
     return (
       <React.Fragment>
@@ -95,4 +80,15 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  auth: PropTypes.shape().isRequired,
+};
+
+const { login } = authAction;
+
+const mapStateToProps = ({ auth }) => ({ auth });
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
