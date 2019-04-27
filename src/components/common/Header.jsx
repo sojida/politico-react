@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import jwt from 'jsonwebtoken';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import authAction from '../../actions/auth.actions';
 import '../../assets/stylesheets/header.css';
 
 class Header extends Component {
@@ -12,10 +14,6 @@ class Header extends Component {
       expired: false,
     };
   }
-
-  getUser = () => {
-    return localStorage.token;
-  };
 
   logout = () => {
     this.setState({ token: null });
@@ -40,11 +38,11 @@ class Header extends Component {
   };
 
   componentDidMount = () => {
-    const token = this.getUser();
+    const { token } = localStorage;
     if (!token) {
       this.setState({ token: null });
     } else {
-      this.setState({ token });
+      this.setState({ token, expired: false });
     }
   };
 
@@ -54,6 +52,8 @@ class Header extends Component {
 
   render() {
     const { token, expired } = this.state;
+    const { logout } = this.props;
+
     return (
       <header>
         {expired && <Redirect to="/login" />}
@@ -65,7 +65,7 @@ class Header extends Component {
           {token ? (
             <div className="nav-content">
               <div className="nav-item logout">
-                <Link to="/" onClick={this.logout}>
+                <Link to="/" onClick={logout}>
                   Logout
                 </Link>
               </div>
@@ -93,4 +93,15 @@ class Header extends Component {
   }
 }
 
-export default Header;
+Header.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
+
+const { logout } = authAction;
+
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Header);
