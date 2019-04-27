@@ -61,4 +61,8 @@ typings/
 .next
 
 #DS_Store
-.DS_Store
+*.DS_Store
+
+#Bundle and images
+/public/images
+/public/bundle.js
