@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import NotFound from './components/NotFound';
 import UnderConstruction from './components/UnderConstruction';
-import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Hompage from './components/Hompage';
 import SignupPage from './components/SignupPage';
