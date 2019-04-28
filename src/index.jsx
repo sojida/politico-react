@@ -10,7 +10,7 @@ async function getComponent() {
     /* webpackChunkName: "lodash" */ 'lodash'
   );
 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = _.join([], ' ');
 
   return element;
 }
