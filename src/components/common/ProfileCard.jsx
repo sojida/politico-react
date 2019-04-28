@@ -43,7 +43,8 @@ class ProfileCard extends Component {
 
   handleProfilePic = img => {
     const localUrl = 'http://127.0.0.1:3000/api/v1';
-    const url = `${localUrl}`;
+    const herokuUrl = ' https://shielded-headland-63958.herokuapp.com/api/v1';
+    const url = `${herokuUrl}`;
     if (img === 'null') {
       return avatar;
     }

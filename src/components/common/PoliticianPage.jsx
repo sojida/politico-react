@@ -8,6 +8,7 @@ import parties from '../../services/parties';
 import offices from '../../services/offices';
 import candidates from '../../services/candidates';
 import handleErrorMessage from '../../helpers/handleErrorMessage';
+import avatar from '../../assets/images/avatar.png';
 
 class PoliticianPage extends Component {
   constructor(props) {
@@ -44,12 +45,13 @@ class PoliticianPage extends Component {
 
   partylogo = logoUrl => {
     const localUrl = 'http://127.0.0.1:3000/api/v1';
-    const url = `${localUrl}`;
+    const herokuUrl = ' https://shielded-headland-63958.herokuapp.com/api/v1';
+    const url = `${herokuUrl}`;
     if (logoUrl === 'logo123') {
-      return 'No logo';
+      return avatar;
     }
 
-    return `<img src="${url}/images/${logoUrl}"></img>`;
+    return `${url}/images/${logoUrl}`;
   };
 
   declareInterest = async () => {
@@ -83,7 +85,9 @@ class PoliticianPage extends Component {
           <tr>
             <td>{elm.name}</td>
             <td>{elm.hqaddress}</td>
-            <td>{this.partylogo(elm.logourl)}</td>
+            <td>
+              <img src={this.partylogo(elm.logourl)} alt="Party Logo" />
+            </td>
           </tr>
         </tbody>
       </table>
