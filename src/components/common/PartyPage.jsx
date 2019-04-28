@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import partyService from '../../services/parties';
+import avatar from '../../assets/images/avatar.png';
 
 class PartyPage extends Component {
   constructor(props) {
@@ -16,12 +17,13 @@ class PartyPage extends Component {
 
   partylogo = logoUrl => {
     const localUrl = 'http://127.0.0.1:3000/api/v1';
-    const url = `${localUrl}`;
+    const herokuUrl = ' https://shielded-headland-63958.herokuapp.com/api/v1';
+    const url = `${herokuUrl}`;
     if (logoUrl === 'logo123') {
-      return 'No logo';
+      return avatar;
     }
 
-    return `<img src="${url}/images/${logoUrl}"></img>`;
+    return `${url}/images/${logoUrl}`;
   };
 
   render() {
@@ -30,7 +32,9 @@ class PartyPage extends Component {
       <tr key={party.id}>
         <td>{party.name}</td>
         <td>{party.hqaddress}</td>
-        <td>{this.partylogo(party.logourl)}</td>
+        <td>
+          <img src={this.partylogo(party.logourl)} alt="Party Logo" />
+        </td>
       </tr>
     ));
 
