@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import Notifications from 'react-notify-toast';
 import NotFound from './components/NotFound';
 import UnderConstruction from './components/UnderConstruction';
 import Footer from './components/common/Footer';
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Provider store={store}>
+          <Notifications />
           <Switch>
             <Route path="/admin" component={UnderConstruction} />
             <Route path="/user" component={UserPage} />
