@@ -5,6 +5,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .loader {
