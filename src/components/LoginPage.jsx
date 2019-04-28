@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Notifications from 'react-notify-toast';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -41,7 +40,6 @@ class Login extends Component {
     return (
       <React.Fragment>
         {loading && <Loader />}
-        <Notifications />
         <Header />
         <div className="form-box-container">
           <div className="form-box">

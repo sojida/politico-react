@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Notifications from 'react-notify-toast';
 import { connect } from 'react-redux';
 import partyAction from '../../actions/party.actions';
 import Loader from './Loader';
@@ -27,7 +26,6 @@ class partySelector extends Component {
     return (
       <div>
         {loading && <Loader />}
-        <Notifications />
         <select onChange={e => changePartyFunc(e.target.value)}>{list}</select>
       </div>
     );
