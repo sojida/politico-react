@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import partyAction from '../../actions/party.actions';
-import Loader from './Loader';
 
 class partySelector extends Component {
   constructor(props) {
@@ -10,14 +8,9 @@ class partySelector extends Component {
     this.state = {};
   }
 
-  componentDidMount = () => {
-    const { getAllParties } = this.props;
-    getAllParties();
-  };
-
   render() {
     const { changePartyFunc, parties } = this.props;
-    const { partyList, loading } = parties;
+    const { partyList } = parties;
     const list = partyList.map(party => (
       <option key={party.id} value={party.id}>
         {party.name}
@@ -25,7 +18,6 @@ class partySelector extends Component {
     ));
     return (
       <div>
-        {loading && <Loader />}
         <select onChange={e => changePartyFunc(e.target.value)}>{list}</select>
       </div>
     );
@@ -34,15 +26,12 @@ class partySelector extends Component {
 
 partySelector.propTypes = {
   changePartyFunc: PropTypes.func.isRequired,
-  getAllParties: PropTypes.func.isRequired,
   parties: PropTypes.shape().isRequired,
 };
-
-const { getAllParties } = partyAction;
 
 const mapStateToProps = ({ parties }) => ({ parties });
 
 export default connect(
   mapStateToProps,
-  { getAllParties }
+  {}
 )(partySelector);
