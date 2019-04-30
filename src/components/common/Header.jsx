@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { notify } from 'react-notify-toast';
 import { Link, Redirect } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
 import { connect } from 'react-redux';
@@ -48,6 +49,15 @@ class Header extends Component {
 
   componentDidUpdate = () => {
     this.checkToken();
+    if (!window.navigator.onLine) {
+      notify.show(
+        'Hmm...seems like you are not connected to the internet',
+        'error',
+        -1
+      );
+    } else {
+      this.checkToken();
+    }
   };
 
   render() {
@@ -87,7 +97,6 @@ class Header extends Component {
             </div>
           )}
         </nav>
-        {/* {noUser && <Redirect to="login" />} */}
       </header>
     );
   }
