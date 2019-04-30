@@ -24,7 +24,13 @@ const auth = (state = initialState, action) => {
     case actionTypes.LOGIN_SUCCESS:
       return { ...state, loading: false, redirect: true, token: action.token };
     case actionTypes.LOGOUT:
-      return { ...state, redirect: false, isAdmin: false, token: null };
+      return {
+        ...state,
+        redirect: false,
+        isAdmin: false,
+        token: null,
+        loading: false,
+      };
     default:
       return state;
   }

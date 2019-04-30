@@ -11,6 +11,8 @@ import LoginPage from './components/LoginPage';
 import UserPage from './components/UserPage';
 import store from './lib/store';
 
+// store.dispatch
+
 class App extends Component {
   constructor(props) {
     super(props);
