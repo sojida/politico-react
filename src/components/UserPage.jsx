@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Navigation from './common/Navigation';
 import SidebarButton from './common/SidebarButton';
 import Header from './common/Header';
 import '../assets/stylesheets/sidenav.css';
+import Loader from './common/Loader';
 
 class UserPage extends Component {
   constructor(props) {
@@ -17,12 +19,23 @@ class UserPage extends Component {
     this.setState({ currentTab: tab });
   };
 
+  componentDidMount = async () => {
+    const { getAllOffices, getAllParties } = this.props;
+    getAllOffices();
+    getAllParties();
+  };
+
   render() {
     const { currentTab, className } = this.state;
+    const { parties, offices } = this.props;
+    const { loading: partyLoading } = parties;
+    const { loading: officeLoading } = offices;
 
     return (
       <div>
         <Header />
+        {partyLoading && <Loader />}
+        {officeLoading && <Loader />}
         <div className="userTab">
           <div className="tab">
             <SidebarButton
@@ -62,5 +75,12 @@ class UserPage extends Component {
     );
   }
 }
+
+UserPage.propTypes = {
+  getAllOffices: PropTypes.func.isRequired,
+  getAllParties: PropTypes.func.isRequired,
+  offices: PropTypes.shape().isRequired,
+  parties: PropTypes.shape().isRequired,
+};
 
 export default UserPage;

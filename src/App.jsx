@@ -8,10 +8,8 @@ import Footer from './components/common/Footer';
 import Hompage from './components/Hompage';
 import SignupPage from './components/SignupPage';
 import LoginPage from './components/LoginPage';
-import UserPage from './components/UserPage';
+import UserPage from './container/userPage.container';
 import store from './lib/store';
-
-// store.dispatch
 
 class App extends Component {
   constructor(props) {
