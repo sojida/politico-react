@@ -60,10 +60,13 @@ typings/
 # next.js build output
 .next
 
-#DS_Store
+# DS_Store
 *.DS_Store
 
-#Bundle and images
+# Bundle and images
 /public/images
 /public/bundle.js
 /public/vendors~lodash.bundle.js
+
+# Compiled
+**compiled.js

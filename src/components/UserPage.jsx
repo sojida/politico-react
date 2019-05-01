@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import LoadingBar from 'react-redux-loading-bar';
 import Navigation from './common/Navigation';
 import SidebarButton from './common/SidebarButton';
 import Header from './common/Header';
@@ -36,6 +37,7 @@ class UserPage extends Component {
         <Header />
         {partyLoading && <Loader />}
         {officeLoading && <Loader />}
+        <LoadingBar />
         <div className="userTab">
           <div className="tab">
             <SidebarButton
