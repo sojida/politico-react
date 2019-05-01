@@ -1,39 +1,23 @@
 import React, { Component } from 'react';
-import partyService from '../../services/parties';
-import avatar from '../../assets/images/avatar.png';
+import PropTypes from 'prop-types';
+import handleImages from '../../helpers/handleImages';
 
 class PartyPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      parties: [],
-    };
+    this.state = {};
   }
 
-  componentDidMount = async () => {
-    const allParties = await partyService.getAllParties();
-    this.setState({ parties: allParties.data });
-  };
-
-  partylogo = logoUrl => {
-    const localUrl = 'http://127.0.0.1:3000/api/v1';
-    const herokuUrl = ' https://shielded-headland-63958.herokuapp.com/api/v1';
-    const url = `${herokuUrl}`;
-    if (logoUrl === 'logo123') {
-      return avatar;
-    }
-
-    return `${url}/images/${logoUrl}`;
-  };
-
   render() {
-    const { parties } = this.state;
-    const listOfParties = parties.map(party => (
+    const { parties } = this.props;
+    const { partyList } = parties;
+
+    const listOfParties = partyList.map(party => (
       <tr key={party.id}>
         <td>{party.name}</td>
         <td>{party.hqaddress}</td>
         <td>
-          <img src={this.partylogo(party.logourl)} alt="Party Logo" />
+          <img src={handleImages(party.logourl)} alt="Party Logo" />
         </td>
       </tr>
     ));
@@ -66,5 +50,9 @@ class PartyPage extends Component {
     );
   }
 }
+
+PartyPage.propTypes = {
+  parties: PropTypes.shape().isRequired,
+};
 
 export default PartyPage;

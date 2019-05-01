@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import VotePage from './VotePage';
-import PartyPage from './PartyPage';
+import VotePageContainer from '../../container/votePage.container';
+import PartyPage from '../../container/partyPage.container';
 import PoliticianPage from './PoliticianPage';
 import ProfilePage from './ProfilePage';
 import ResultPage from './ResultPage';
@@ -9,7 +9,7 @@ import ResultPage from './ResultPage';
 const Navigation = ({ currentTab }) => {
   return (
     <div className="content">
-      {currentTab === 'vote-section' ? <VotePage /> : null}
+      {currentTab === 'vote-section' ? <VotePageContainer /> : null}
       {currentTab === 'party-section' ? <PartyPage /> : null}
       {currentTab === 'politician-section' ? <PoliticianPage /> : null}
       {currentTab === 'result-section' ? <ResultPage /> : null}
