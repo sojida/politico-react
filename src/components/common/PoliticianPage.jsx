@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { notify } from 'react-notify-toast';
 import PropTypes from 'prop-types';
 import PartyList from './PartyList';
 import OfficeList from './OfficeList';
 import Button from './Button';
-import Loader from './Loader';
-import candidates from '../../services/candidates';
-import handleErrorMessage from '../../helpers/handleErrorMessage';
-import avatar from '../../assets/images/avatar.png';
 import officeAction from '../../actions/office.actions';
 import partyAction from '../../actions/party.actions';
+import candidateAction from '../../actions/candidate.actions';
+import handleImages from '../../helpers/handleImages';
 
 class PoliticianPage extends Component {
   constructor(props) {
@@ -52,19 +49,10 @@ class PoliticianPage extends Component {
     }
   };
 
-  partylogo = logoUrl => {
-    const localUrl = 'http://127.0.0.1:3000/api/v1';
-    const herokuUrl = ' https://shielded-headland-63958.herokuapp.com/api/v1';
-    const url = `${herokuUrl}`;
-    if (logoUrl === 'logo123') {
-      return avatar;
-    }
-
-    return `${url}/images/${logoUrl}`;
-  };
-
-  declareInterest = async () => {
+  declareInterest = () => {
     const { party, office } = this.state;
+    const { declareInterest } = this.props;
+
     const user = JSON.parse(localStorage.user);
 
     const data = {
@@ -72,15 +60,7 @@ class PoliticianPage extends Component {
       party: parseFloat(party),
     };
 
-    const response = await candidates.declareInterest(data, user.id);
-
-    if (response.status === 201) {
-      notify.show(handleErrorMessage(response.message), 'success');
-    }
-
-    if (response.status >= 400) {
-      notify.show(handleErrorMessage(response.error), 'error');
-    }
+    declareInterest(data, user.id);
   };
 
   render() {
@@ -95,7 +75,7 @@ class PoliticianPage extends Component {
             <td>{elm.name}</td>
             <td>{elm.hqaddress}</td>
             <td>
-              <img src={this.partylogo(elm.logourl)} alt="Party Logo" />
+              <img src={handleImages(elm.logourl)} alt="Party Logo" />
             </td>
           </tr>
         </tbody>
@@ -140,16 +120,22 @@ class PoliticianPage extends Component {
 PoliticianPage.propTypes = {
   getOfficeById: PropTypes.func.isRequired,
   getPartyById: PropTypes.func.isRequired,
+  declareInterest: PropTypes.func.isRequired,
   offices: PropTypes.shape().isRequired,
   parties: PropTypes.shape().isRequired,
 };
 
 const { getOfficeById } = officeAction;
 const { getPartyById } = partyAction;
+const { declareInterest } = candidateAction;
 
-const mapStateToProps = ({ offices, parties }) => ({ offices, parties });
+const mapStateToProps = ({ offices, parties, candidates }) => ({
+  offices,
+  parties,
+  candidates,
+});
 
 export default connect(
   mapStateToProps,
-  { getOfficeById, getPartyById }
+  { getOfficeById, getPartyById, declareInterest }
 )(PoliticianPage);
