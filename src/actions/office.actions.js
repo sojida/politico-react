@@ -22,6 +22,19 @@ const getOfficeFailure = () => {
   };
 };
 
+const getOneOfficeSuccess = office => {
+  return {
+    type: actions.FETCH_OFFICE_SUCCESS,
+    office,
+  };
+};
+
+const getOneOfficeFailure = () => {
+  return {
+    type: actions.FETCH_OFFICE_FAILURE,
+  };
+};
+
 const getAllOffices = () => {
   return async dispatch => {
     dispatch(contentLoading());
@@ -37,6 +50,20 @@ const getAllOffices = () => {
   };
 };
 
-const officeAction = { getAllOffices };
+const getOfficeById = id => {
+  return async dispatch => {
+    const res = await officeServices.getOfficeById(id);
+    if (res.status >= 400) {
+      dispatch(getOneOfficeFailure());
+      notify.show(handleErrorMessage(res.error), 'error');
+    }
+
+    if (res.status === 200) {
+      dispatch(getOneOfficeSuccess(res.data));
+    }
+  };
+};
+
+const officeAction = { getAllOffices, getOfficeById };
 
 export default officeAction;

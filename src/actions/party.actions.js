@@ -22,6 +22,19 @@ const getPartyFailure = () => {
   };
 };
 
+const getOnePartySuccess = party => {
+  return {
+    type: actions.FETCH_PARTY_SUCCESS,
+    party,
+  };
+};
+
+const getOnePartyFailure = () => {
+  return {
+    type: actions.FETCH_PARTY_FAILURE,
+  };
+};
+
 const getAllParties = () => {
   return async dispatch => {
     dispatch(contentLoading());
@@ -37,6 +50,20 @@ const getAllParties = () => {
   };
 };
 
-const partyAction = { getAllParties };
+const getPartyById = id => {
+  return async dispatch => {
+    const res = await partyServices.getPartiesById(id);
+    if (res.status >= 400) {
+      dispatch(getOnePartyFailure());
+      notify.show(handleErrorMessage(res.error), 'error');
+    }
+
+    if (res.status === 200) {
+      dispatch(getOnePartySuccess(res.data));
+    }
+  };
+};
+
+const partyAction = { getAllParties, getPartyById };
 
 export default partyAction;
