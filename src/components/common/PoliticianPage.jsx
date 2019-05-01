@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
-import Notifications, { notify } from 'react-notify-toast';
+import { connect } from 'react-redux';
+import { notify } from 'react-notify-toast';
+import PropTypes from 'prop-types';
 import PartyList from './PartyList';
 import OfficeList from './OfficeList';
 import Button from './Button';
 import Loader from './Loader';
-import parties from '../../services/parties';
-import offices from '../../services/offices';
 import candidates from '../../services/candidates';
 import handleErrorMessage from '../../helpers/handleErrorMessage';
 import avatar from '../../assets/images/avatar.png';
+import officeAction from '../../actions/office.actions';
+import partyAction from '../../actions/party.actions';
 
 class PoliticianPage extends Component {
   constructor(props) {
     super(props);
+    const { parties, offices } = this.props;
+    const { partyList } = parties;
+    const { officeList } = offices;
     this.state = {
-      party: 1,
-      office: 1,
-      selectedParty: [],
-      selectedOffice: [],
-      loading: false,
+      party: partyList[0].id,
+      office: officeList[0].id,
     };
   }
 
@@ -30,16 +32,23 @@ class PoliticianPage extends Component {
     this.setState({ party: id });
   };
 
-  componentDidUpdate = async (prevProp, prevState) => {
+  componentDidMount = () => {
     const { party, office } = this.state;
+    const { getOfficeById, getPartyById } = this.props;
+    getOfficeById(office);
+    getPartyById(party);
+  };
+
+  componentDidUpdate = (prevProp, prevState) => {
+    const { party, office } = this.state;
+    const { getOfficeById, getPartyById } = this.props;
+
     if (prevState.party !== party) {
-      const selectedParty = await parties.getPartiesById(party);
-      this.setState({ selectedParty: selectedParty.data });
+      getPartyById(party);
     }
 
     if (prevState.office !== office) {
-      const selectedOffice = await offices.getOfficeById(office);
-      this.setState({ selectedOffice: selectedOffice.data });
+      getOfficeById(office);
     }
   };
 
@@ -55,7 +64,6 @@ class PoliticianPage extends Component {
   };
 
   declareInterest = async () => {
-    this.setState({ loading: true });
     const { party, office } = this.state;
     const user = JSON.parse(localStorage.user);
 
@@ -67,18 +75,19 @@ class PoliticianPage extends Component {
     const response = await candidates.declareInterest(data, user.id);
 
     if (response.status === 201) {
-      this.setState({ loading: false });
       notify.show(handleErrorMessage(response.message), 'success');
     }
 
     if (response.status >= 400) {
-      this.setState({ loading: false });
       notify.show(handleErrorMessage(response.error), 'error');
     }
   };
 
   render() {
-    const { selectedParty, selectedOffice, loading } = this.state;
+    const { parties, offices } = this.props;
+    const { selectedParty } = parties;
+    const { selectedOffice } = offices;
+
     const partyElement = selectedParty.map(elm => (
       <table key={elm.id}>
         <tbody>
@@ -106,8 +115,6 @@ class PoliticianPage extends Component {
 
     return (
       <div>
-        {loading && <Loader />}
-        <Notifications />
         <div className="center">
           <h2>Choose the party you want to represent</h2>
           <PartyList changePartyFunc={this.selectParty} />
@@ -130,4 +137,19 @@ class PoliticianPage extends Component {
   }
 }
 
-export default PoliticianPage;
+PoliticianPage.propTypes = {
+  getOfficeById: PropTypes.func.isRequired,
+  getPartyById: PropTypes.func.isRequired,
+  offices: PropTypes.shape().isRequired,
+  parties: PropTypes.shape().isRequired,
+};
+
+const { getOfficeById } = officeAction;
+const { getPartyById } = partyAction;
+
+const mapStateToProps = ({ offices, parties }) => ({ offices, parties });
+
+export default connect(
+  mapStateToProps,
+  { getOfficeById, getPartyById }
+)(PoliticianPage);
