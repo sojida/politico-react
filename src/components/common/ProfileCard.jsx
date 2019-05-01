@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
 import '../../assets/stylesheets/modal.css';
-import avatar from '../../assets/images/avatar.png';
+import handleImages from '../../helpers/handleImages';
 import upload from '../../services/upload';
 import Loader from './Loader';
 import handleErrorMessage from '../../helpers/handleErrorMessage';
@@ -41,21 +41,6 @@ class ProfileCard extends Component {
     localStorage.setItem('user', JSON.stringify(user));
   };
 
-  handleProfilePic = img => {
-    const localUrl = 'http://127.0.0.1:3000/api/v1';
-    const herokuUrl = ' https://shielded-headland-63958.herokuapp.com/api/v1';
-    const url = `${herokuUrl}`;
-    if (img === 'null') {
-      return avatar;
-    }
-
-    if (img === 'logourl') {
-      return avatar;
-    }
-
-    return `${url}/images/${img}`;
-  };
-
   render() {
     const user = JSON.parse(localStorage.user);
     const { passporturl, loading } = this.state;
@@ -64,7 +49,7 @@ class ProfileCard extends Component {
         {loading && <Loader />}
         <Notifications />
         <div className="img-container">
-          <img src={this.handleProfilePic(passporturl)} alt="avatar" />
+          <img src={handleImages(passporturl)} alt="avatar" />
         </div>
         <div className="card-container">
           <h4>

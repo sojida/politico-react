@@ -1,19 +1,19 @@
 import actionTypes from '../constants/actionTypes';
 
 const initialState = {
-  loading: false,
+  voteCandidatesList: [],
 };
 
 const candidate = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.BEGIN_LOADING:
-      return { ...state, loading: true };
-    case actionTypes.STOP_LOADING:
-      return { ...state, loading: false };
     case actionTypes.INTEREST_SUCCESS:
-      return { ...state, loading: false };
+      return { ...state };
     case actionTypes.INTEREST_FAILURE:
-      return { ...state, loading: false };
+      return { ...state };
+    case actionTypes.FETCH_CANDIDATE_SUCCESS:
+      return { ...state, voteCandidatesList: action.candidates };
+    case actionTypes.FETCH_CANDIDATE_FAILURE:
+      return { ...state };
     default:
       return state;
   }

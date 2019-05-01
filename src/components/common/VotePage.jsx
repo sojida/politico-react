@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
+import PropTypes from 'prop-types';
 import OfficeList from './OfficeList';
-import services from '../../services/candidates';
 import vote from '../../services/vote';
 import Modal from './Modal';
 import Loader from './Loader';
@@ -11,7 +11,6 @@ class VotePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      candidates: [],
       currentOfficeId: 1,
       modalOpen: false,
       candidateInfo: {
@@ -24,20 +23,19 @@ class VotePage extends Component {
         lastname: '',
       },
     };
-    this.changeOffice = this.changeOffice.bind(this);
   }
 
   componentDidMount = async () => {
     const { currentOfficeId } = this.state;
-    const candidates = await services.getCandidates(currentOfficeId);
-    this.setState({ candidates: candidates.data });
+    const { getCandidates } = this.props;
+    getCandidates(currentOfficeId);
   };
 
   componentDidUpdate = async (prevProps, prevState) => {
     const { currentOfficeId } = this.state;
     if (prevState.currentOfficeId !== currentOfficeId) {
-      const candidates = await services.getCandidates(currentOfficeId);
-      this.setState({ candidates: candidates.data });
+      const { getCandidates } = this.props;
+      getCandidates(currentOfficeId);
     }
   };
 
@@ -82,8 +80,10 @@ class VotePage extends Component {
   };
 
   render() {
-    const { candidates, modalOpen, loading, candidateName } = this.state;
-    const listOfCandidates = candidates.map(info => (
+    const { modalOpen, loading, candidateName } = this.state;
+    const { candidates } = this.props;
+    const { voteCandidatesList } = candidates;
+    const listOfCandidates = voteCandidatesList.map(info => (
       <tr className="interest-item" key={info.id}>
         <td>{info.partyname}</td>
         <td candidateid={info.candidate}>
@@ -145,5 +145,10 @@ class VotePage extends Component {
     );
   }
 }
+
+VotePage.propTypes = {
+  candidates: PropTypes.shape().isRequired,
+  getCandidates: PropTypes.func.isRequired,
+};
 
 export default VotePage;

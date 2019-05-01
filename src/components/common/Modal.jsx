@@ -5,13 +5,10 @@ import '../../assets/stylesheets/modal.css';
 class Modal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      open: false,
-    };
+    this.state = {};
   }
 
   render() {
-    const { open } = this.state;
     const {
       modalState,
       closeModal,
