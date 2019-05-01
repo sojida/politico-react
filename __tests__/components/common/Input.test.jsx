@@ -14,6 +14,8 @@ describe('<Header />', () => {
         className="signLabel"
         placeholder="Confirm Password"
         required="required"
+        value="test"
+        onChange={() => 'changed'}
       />
     );
     expect(wrapper.find('input'));

@@ -7,6 +7,14 @@ const handleImages = logoUrl => {
     return avatar;
   }
 
+  if (logoUrl === 'null') {
+    return avatar;
+  }
+
+  if (logoUrl === 'logourl') {
+    return avatar;
+  }
+
   return `${url}/images/${logoUrl}`;
 };
 
