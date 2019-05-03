@@ -36,23 +36,24 @@ const logoutUser = () => {
 };
 
 const login = userDetails => {
-  return async dispatch => {
+  return dispatch => {
     dispatch(contentLoading());
-    const res = await authServices.auth('login', userDetails);
-    if (res.status >= 400) {
-      dispatch(loginFailure());
-      notify.show(handleErrorMessage(res.error), 'error');
-    }
-
-    if (res.status === 200) {
-      localStorage.setItem('token', res.data[0].token);
-      localStorage.setItem('user', JSON.stringify(res.data[0].user));
-      if (res.data[0].user.isadmin) {
-        dispatch(loginSuccessAdmin(res.data[0].token));
-      } else {
-        dispatch(loginSuccess(res.data[0].token));
+    return authServices.auth('login', userDetails).then(res => {
+      if (res.status >= 400) {
+        dispatch(loginFailure());
+        notify.show(handleErrorMessage(res.error), 'error');
       }
-    }
+
+      if (res.status === 200) {
+        localStorage.setItem('token', res.data[0].token);
+        localStorage.setItem('user', JSON.stringify(res.data[0].user));
+        if (res.data[0].user.isadmin) {
+          dispatch(loginSuccessAdmin(res.data[0].token));
+        } else {
+          dispatch(loginSuccess(res.data[0].token));
+        }
+      }
+    });
   };
 };
 
@@ -63,6 +64,12 @@ const logout = () => {
   };
 };
 
-const authAction = { login, logout };
+const authAction = {
+  login,
+  logout,
+  loginSuccess,
+  loginSuccessAdmin,
+  loginFailure,
+};
 
 export default authAction;
