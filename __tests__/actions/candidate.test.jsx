@@ -65,11 +65,15 @@ describe('candidate actions', () => {
   });
 
   it('should create an action for interest', async () => {
+    const data = {
+      office: 1,
+      party: 1,
+    };
     fetchMock.mock(
       '/api/v1/interest/1/register',
       {
         status: 201,
-        body: [{ message: 'successful' }],
+        body: data,
       },
       {
         method: 'POST',
@@ -89,26 +93,18 @@ describe('candidate actions', () => {
       },
     ];
     const store = mockStore({});
-    const data = {
-      office: 1,
-      party: 1,
-    };
+
     await fetch('/api/v1/interest/1/register', {
       method: 'POST',
       headers: {
         Authorization: 'faketoken',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: data,
     });
 
-    store
-      .dispatch(actions.declareInterest(data, 1))
-      .then(() => {
-        expect(store.getActions()).toEqual(expectedAction);
-      })
-      .then(() => {
-        expect(store.getActions()).toEqual(expectedAction);
-      });
+    store.dispatch(actions.declareInterest(data, 1)).then(() => {
+      expect(store.getActions()).toEqual(expectedAction);
+    });
   });
 });

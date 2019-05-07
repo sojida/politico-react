@@ -13,7 +13,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginDetatils: {
+      loginDetails: {
         email: '',
         password: '',
       },
@@ -21,19 +21,19 @@ class Login extends Component {
   }
 
   handleChange = ({ target }) => {
-    const { loginDetatils } = this.state;
-    loginDetatils[target.id] = target.value;
-    this.setState({ loginDetatils });
+    const { loginDetails } = this.state;
+    loginDetails[target.id] = target.value;
+    this.setState({ loginDetails });
   };
 
   handleClick = () => {
-    const { loginDetatils } = this.state;
+    const { loginDetails } = this.state;
     const { login } = this.props;
-    login(loginDetatils);
+    login(loginDetails);
   };
 
   render() {
-    const { loginDetatils } = this.state;
+    const { loginDetails } = this.state;
     const { auth } = this.props;
     const { loading, redirect, isAdmin } = auth;
 
@@ -52,7 +52,7 @@ class Login extends Component {
               className="signLabel"
               placeholder="johndeo@gmail.com"
               required="required"
-              value={loginDetatils.email}
+              value={loginDetails.email}
               onChange={this.handleChange}
             />
             <Input
@@ -62,7 +62,7 @@ class Login extends Component {
               className="signLabel"
               placeholder="Password"
               required="required"
-              value={loginDetatils.password}
+              value={loginDetails.password}
               onChange={this.handleChange}
             />
             <Button value="Login" className="btn1" onClick={this.handleClick} />
