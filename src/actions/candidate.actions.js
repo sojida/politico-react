@@ -64,6 +64,13 @@ const getCandidates = office => {
   };
 };
 
-const candidateAction = { declareInterest, getCandidates };
+const candidateAction = {
+  declareInterest,
+  getCandidates,
+  interestSuccess,
+  interestFailure,
+  getCandidateSuccess,
+  getCandidateFailure,
+};
 
 export default candidateAction;

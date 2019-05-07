@@ -48,4 +48,8 @@ module.exports = {
   },
   collectCoverage: true,
   coverageReporters: ['json', 'html', 'lcov'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/index.js',
+    '<rootDir>/src/services',
+  ],
 };
