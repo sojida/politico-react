@@ -13,6 +13,7 @@ class UserPage extends Component {
     this.state = {
       currentTab: 'vote-section',
       className: 'active',
+      isAdmin: false,
     };
   }
 
@@ -24,14 +25,15 @@ class UserPage extends Component {
     const { getAllOffices, getAllParties } = this.props;
     getAllOffices();
     getAllParties();
+    const { user } = localStorage;
+    this.setState({ isAdmin: JSON.parse(user).isadmin });
   };
 
   render() {
-    const { currentTab, className } = this.state;
+    const { currentTab, className, isAdmin } = this.state;
     const { parties, offices } = this.props;
     const { loading: partyLoading } = parties;
     const { loading: officeLoading } = offices;
-
     return (
       <div>
         <Header />
@@ -70,6 +72,14 @@ class UserPage extends Component {
               iconClass="fas fa-user"
               onClick={() => this.changeTab('profile-section')}
             />
+            {isAdmin && (
+              <SidebarButton
+                value="Admin"
+                className={currentTab === 'admin-section' ? className : null}
+                iconClass="fas fa-user"
+                onClick={() => this.changeTab('admin-section')}
+              />
+            )}
           </div>
           <Navigation currentTab={currentTab} />
         </div>
