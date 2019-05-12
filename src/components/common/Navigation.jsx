@@ -5,6 +5,7 @@ import PartyPage from '../../container/partyPage.container';
 import PoliticianPage from './PoliticianPage';
 import ProfilePage from './ProfilePage';
 import ResultPage from './ResultPage';
+import AdminPage from './AdminPage';
 
 const Navigation = ({ currentTab }) => {
   return (
@@ -14,6 +15,7 @@ const Navigation = ({ currentTab }) => {
       {currentTab === 'politician-section' ? <PoliticianPage /> : null}
       {currentTab === 'result-section' ? <ResultPage /> : null}
       {currentTab === 'profile-section' ? <ProfilePage /> : null}
+      {currentTab === 'admin-section' ? <AdminPage /> : null}
     </div>
   );
 };

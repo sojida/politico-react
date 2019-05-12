@@ -71,7 +71,7 @@ class Login extends Component {
             </p>
           </div>
         </div>
-        {isAdmin && redirect && <Redirect to="/admin" />}
+        {isAdmin && redirect && <Redirect to="/user" />}
         {!isAdmin && redirect && <Redirect to="/user" />}
       </React.Fragment>
     );
