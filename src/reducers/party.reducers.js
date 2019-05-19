@@ -18,6 +18,10 @@ const parties = (state = initialState, action) => {
       return { ...state, selectedParty: action.party, loading: false };
     case actionTypes.FETCH_PARTY_FAILURE:
       return { ...state, loading: false };
+    case actionTypes.CREATE_PARTY_SUCCESS:
+      return { ...state, loading: false };
+    case actionTypes.CREATE_PARTY_FAILURE:
+      return { ...state, loading: false };
     default:
       return state;
   }

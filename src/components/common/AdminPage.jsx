@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import OfficeList from './OfficeList';
 import '../../assets/stylesheets/admin.css';
 
@@ -7,6 +8,13 @@ class AdminPage extends Component {
     super(props);
     this.state = {};
   }
+
+  createParty = e => {
+    e.preventDefault();
+    const { createParties } = this.props;
+    const data = new FormData(e.target);
+    createParties(data);
+  };
 
   render() {
     return (
@@ -17,10 +25,10 @@ class AdminPage extends Component {
             encType="multipart/form-data"
             name="partyForm"
             id="party-form"
-            onSubmit="return false"
+            onSubmit={e => this.createParty(e)}
             className="admin-form"
           >
-            <label htmlFor="party">
+            <label htmlFor="name">
               Party Name
               <span className="important">*</span>
               <input
@@ -42,10 +50,10 @@ class AdminPage extends Component {
               />
             </label>
 
-            <label htmlFor="partyLogo">
+            <label htmlFor="logoUrl">
               Party Logo
               <span className="important">*</span>
-              <input type="file" id="logo-upload" name="logoUrl" />
+              <input type="file" id="logoUrl" name="logoUrl" accept="image/*" />
             </label>
 
             <button type="submit" className="create-party-btn">
@@ -100,5 +108,9 @@ class AdminPage extends Component {
     );
   }
 }
+
+AdminPage.propTypes = {
+  createParties: PropTypes.func.isRequired,
+};
 
 export default AdminPage;
