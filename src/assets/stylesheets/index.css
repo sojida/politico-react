@@ -15,6 +15,17 @@
   color: white;
 }
 
+.btn-del {
+  background-color: #fff;
+  color: red;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-del:hover {
+  border: 1px solid red;
+}
+
 .vote-btn {
   background-color: #3c9848;
   color: white;
