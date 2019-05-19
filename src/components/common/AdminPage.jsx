@@ -9,6 +9,11 @@ class AdminPage extends Component {
     this.state = {};
   }
 
+  componentDidMount = () => {
+    const { getInterestedCandidates } = this.props;
+    getInterestedCandidates(1);
+  };
+
   createParty = async e => {
     e.preventDefault();
     const { createParties, getAllParties } = this.props;
@@ -25,7 +30,36 @@ class AdminPage extends Component {
     await getAllOffices();
   };
 
+  changeOffice = id => {
+    const { getInterestedCandidates } = this.props;
+    getInterestedCandidates(id);
+  };
+
   render() {
+    const { candidates } = this.props;
+    const { interestedCandidates } = candidates;
+
+    const listOfInterestee = interestedCandidates.map(info => (
+      <tr className="interest-item" key={info.id}>
+        <td partyid={info.party}>{info.partyname}</td>
+        <td officeid={info.office}>{info.officename}</td>
+        <td candidateid={info.candidate}>
+          {info.firstname}
+          &nbsp;
+          {info.lastname}
+        </td>
+        <td className="register-user dark-btn">
+          <i className="fas fa-user-check" />
+        </td>
+      </tr>
+    ));
+
+    const noInterestee = (
+      <div className="center">
+        <h2>No Interested Candidate for this office</h2>
+      </div>
+    );
+
     return (
       <div>
         <div className="create-party panel">
@@ -111,7 +145,16 @@ class AdminPage extends Component {
         <div className="inrterest-table panel">
           <h3>Interested Candidates</h3>
           <p>Select office to see candidates</p>
-          <OfficeList />
+          <OfficeList changeOfficeFunc={this.changeOffice} />
+          <div>
+            {listOfInterestee.length ? (
+              <table>
+                <tbody>{listOfInterestee}</tbody>
+              </table>
+            ) : (
+              <div>{noInterestee}</div>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -123,6 +166,8 @@ AdminPage.propTypes = {
   createOffice: PropTypes.func.isRequired,
   getAllParties: PropTypes.func.isRequired,
   getAllOffices: PropTypes.func.isRequired,
+  getInterestedCandidates: PropTypes.func.isRequired,
+  candidates: PropTypes.shape().isRequired,
 };
 
 export default AdminPage;

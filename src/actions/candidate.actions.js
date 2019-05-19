@@ -29,6 +29,19 @@ const getCandidateFailure = () => {
   };
 };
 
+const getInterestedCandidateSuccess = interestees => {
+  return {
+    type: actions.GET_INTERESTEE_SUCCESS,
+    interestees,
+  };
+};
+
+const getInterestedCandidateFailure = () => {
+  return {
+    type: actions.GET_INTERESTEE_FAILURE,
+  };
+};
+
 const declareInterest = (data, id) => {
   return async dispatch => {
     dispatch(showLoading());
@@ -64,6 +77,23 @@ const getCandidates = office => {
   };
 };
 
+const getInterestedCandidates = office => {
+  return async dispatch => {
+    dispatch(showLoading());
+    const res = await candidateServices.getInterestedCandidates(office);
+    if (res.status >= 400) {
+      dispatch(hideLoading());
+      dispatch(getInterestedCandidateFailure());
+      notify.show(handleErrorMessage(res.error), 'error');
+    }
+
+    if (res.status === 200) {
+      dispatch(getInterestedCandidateSuccess(res.data));
+      dispatch(hideLoading());
+    }
+  };
+};
+
 const candidateAction = {
   declareInterest,
   getCandidates,
@@ -71,6 +101,7 @@ const candidateAction = {
   interestFailure,
   getCandidateSuccess,
   getCandidateFailure,
+  getInterestedCandidates,
 };
 
 export default candidateAction;

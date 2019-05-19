@@ -31,7 +31,22 @@ const declareInterest = (data, id) => {
     .catch(err => err);
 };
 
+const getInterestedCandidates = officeId => {
+  return window
+    .fetch(`${url}/interest/${officeId}`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Authorization: localStorage.token,
+      },
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   getCandidates,
   declareInterest,
+  getInterestedCandidates,
 };
