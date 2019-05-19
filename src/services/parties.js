@@ -44,8 +44,23 @@ const createParty = data => {
     .catch(err => err);
 };
 
+const deleteParty = partyId => {
+  return window
+    .fetch(`${url}/parties/${partyId}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: {
+        Authorization: localStorage.token,
+      },
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   getAllParties,
   getPartiesById,
   createParty,
+  deleteParty,
 };

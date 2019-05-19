@@ -78,6 +78,23 @@ const createParties = data => {
   };
 };
 
-const partyAction = { getAllParties, getPartyById, createParties };
+const deleteParty = partyId => {
+  return async dispatch => {
+    dispatch(showLoading());
+    const res = await partyServices.deleteParty(partyId);
+
+    if (res.status >= 400) {
+      dispatch(hideLoading());
+      notify.show(handleErrorMessage(res.error), 'error');
+    }
+
+    if (res.status === 200) {
+      dispatch(hideLoading());
+      notify.show(handleErrorMessage(res.message), 'success');
+    }
+  };
+};
+
+const partyAction = { getAllParties, getPartyById, createParties, deleteParty };
 
 export default partyAction;
