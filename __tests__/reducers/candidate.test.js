@@ -5,6 +5,7 @@ describe('candidate reducers', () => {
   it('should return the initial state', () => {
     expect(candidateReducer(undefined, {})).toEqual({
       voteCandidatesList: [],
+      interestedCandidates: [],
     });
   });
 
