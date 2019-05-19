@@ -95,6 +95,29 @@ const deleteParty = partyId => {
   };
 };
 
-const partyAction = { getAllParties, getPartyById, createParties, deleteParty };
+const editPartyname = (partyId, data) => {
+  return async dispatch => {
+    dispatch(showLoading());
+    const res = await partyServices.editPartyName(partyId, data);
+
+    if (res.status >= 400) {
+      dispatch(hideLoading());
+      notify.show(handleErrorMessage(res.error), 'error');
+    }
+
+    if (res.status === 200) {
+      dispatch(hideLoading());
+      notify.show(handleErrorMessage(res.message), 'success');
+    }
+  };
+};
+
+const partyAction = {
+  getAllParties,
+  getPartyById,
+  createParties,
+  deleteParty,
+  editPartyname,
+};
 
 export default partyAction;
