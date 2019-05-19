@@ -4,7 +4,7 @@ import partyAction from '../actions/party.actions';
 import officeAction from '../actions/office.actions';
 import candidateAction from '../actions/candidate.actions';
 
-const { getInterestedCandidates } = candidateAction;
+const { getInterestedCandidates, createCandidate } = candidateAction;
 const { createParties, getAllParties } = partyAction;
 const { createOffice, getAllOffices } = officeAction;
 
@@ -22,6 +22,7 @@ const AdminPageContainer = connect(
     getAllParties,
     getAllOffices,
     getInterestedCandidates,
+    createCandidate,
   }
 )(AdminPage);
 

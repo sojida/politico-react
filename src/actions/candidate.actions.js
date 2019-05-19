@@ -94,6 +94,22 @@ const getInterestedCandidates = office => {
   };
 };
 
+const createCandidate = (userid, data) => {
+  return async dispatch => {
+    dispatch(showLoading());
+    const res = await candidateServices.createCandidate(userid, data);
+    if (res.status >= 400) {
+      dispatch(hideLoading());
+      notify.show(handleErrorMessage(res.error), 'error');
+    }
+
+    if (res.status === 201) {
+      dispatch(hideLoading());
+      notify.show(handleErrorMessage(res.message), 'success');
+    }
+  };
+};
+
 const candidateAction = {
   declareInterest,
   getCandidates,
@@ -102,6 +118,7 @@ const candidateAction = {
   getCandidateSuccess,
   getCandidateFailure,
   getInterestedCandidates,
+  createCandidate,
 };
 
 export default candidateAction;
