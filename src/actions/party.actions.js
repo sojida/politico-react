@@ -4,12 +4,6 @@ import actions from '../constants/actionTypes';
 import partyServices from '../services/parties';
 import handleErrorMessage from '../helpers/handleErrorMessage';
 
-const contentLoading = () => {
-  return {
-    type: actions.BEGIN_LOADING,
-  };
-};
-
 const getPartySuccess = parties => {
   return {
     type: actions.FETCH_PARTIES_SUCCESS,
@@ -38,14 +32,16 @@ const getOnePartyFailure = () => {
 
 const getAllParties = () => {
   return async dispatch => {
-    dispatch(contentLoading());
+    dispatch(showLoading());
     const res = await partyServices.getAllParties();
     if (res.status >= 400) {
+      dispatch(hideLoading());
       dispatch(getPartyFailure());
       notify.show(handleErrorMessage(res.error), 'error');
     }
 
     if (res.status === 200) {
+      dispatch(hideLoading());
       dispatch(getPartySuccess(res.data));
     }
   };
