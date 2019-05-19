@@ -1,0 +1,61 @@
+.important {
+  color: red;
+}
+
+.panel {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  background: lightgray;
+  border-radius: 5px;
+}
+
+.panel label {
+  display: block;
+  height: 50px;
+}
+
+.panel label input {
+  border: 1px solid lightgray;
+  width: 250px;
+  height: 20px;
+  display: block;
+  margin: 2px auto;
+  padding: 1px 5px;
+  outline: none;
+}
+.panel label input[type='file'] {
+  border: none;
+  height: auto;
+  width: auto;
+  text-align: center;
+}
+
+.panel form select,
+.panel form option {
+  border: none;
+  height: auto;
+  width: auto;
+  text-align: center;
+}
+
+.panel form input[type='submit'],
+.create-party-btn {
+  font-size: 1.2rem;
+  margin: 10px 30px;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: var(--primary);
+  color: #fff;
+  transition: 0.5s;
+  width: 250px;
+  border: 1px solid;
+}
+
+.panel form input[type='submit']:hover,
+.create-party-btn:hover {
+  background: #fff;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
