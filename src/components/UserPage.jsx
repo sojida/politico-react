@@ -11,7 +11,7 @@ class UserPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: 'vote-section',
+      currentTab: 'admin-section',
       className: 'active',
       isAdmin: false,
     };
