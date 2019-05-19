@@ -45,8 +45,25 @@ const getInterestedCandidates = officeId => {
     .catch(err => err);
 };
 
+const createCandidate = (userid, data) => {
+  return window
+    .fetch(`${url}/office/${userid}/register`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        Authorization: localStorage.token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   getCandidates,
   declareInterest,
   getInterestedCandidates,
+  createCandidate,
 };

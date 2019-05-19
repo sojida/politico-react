@@ -36,7 +36,7 @@ class AdminPage extends Component {
   };
 
   render() {
-    const { candidates } = this.props;
+    const { candidates, createCandidate } = this.props;
     const { interestedCandidates } = candidates;
 
     const listOfInterestee = interestedCandidates.map(info => (
@@ -48,8 +48,19 @@ class AdminPage extends Component {
           &nbsp;
           {info.lastname}
         </td>
-        <td className="register-user dark-btn">
-          <i className="fas fa-user-check" />
+        <td>
+          <button
+            type="button"
+            className="btn"
+            onClick={() =>
+              createCandidate(info.candidate, {
+                office: parseFloat(info.office),
+                party: parseFloat(info.party),
+              })
+            }
+          >
+            <i className="fas fa-user-check" />
+          </button>
         </td>
       </tr>
     ));
@@ -168,6 +179,7 @@ AdminPage.propTypes = {
   getAllOffices: PropTypes.func.isRequired,
   getInterestedCandidates: PropTypes.func.isRequired,
   candidates: PropTypes.shape().isRequired,
+  createCandidate: PropTypes.func.isRequired,
 };
 
 export default AdminPage;
