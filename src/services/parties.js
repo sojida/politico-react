@@ -58,9 +58,26 @@ const deleteParty = partyId => {
     .catch(err => err);
 };
 
+const editPartyName = (partyid, data) => {
+  return window
+    .fetch(`${url}/parties/${partyid}/name`, {
+      method: 'PATCH',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.token,
+      },
+      body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   getAllParties,
   getPartiesById,
   createParty,
   deleteParty,
+  editPartyName,
 };

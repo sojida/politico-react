@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
+import EditModal from './EditModal';
 import handleImages from '../../helpers/handleImages';
 
 class PartyPage extends Component {
@@ -10,6 +11,8 @@ class PartyPage extends Component {
       isAdmin: false,
       modalOpen: false,
       partyId: null,
+      editModalOpen: false,
+      partyName: { name: '' },
     };
   }
 
@@ -22,22 +25,48 @@ class PartyPage extends Component {
     this.setState({ modalOpen: false });
   };
 
+  closeEditModal = () => {
+    this.setState({ editModalOpen: false });
+  };
+
+  editModal = (partyName, partyId) => {
+    this.setState({
+      editModalOpen: true,
+      partyName: { name: partyName },
+      partyId,
+    });
+  };
+
+  changePartyName = ({ target }) => {
+    const { partyName } = this.state;
+    partyName[target.id] = target.value;
+    this.setState({ partyName });
+  };
+
   deleteModal = partyId => {
     this.setState({ modalOpen: true, partyId });
+  };
+
+  confirmEdit = async () => {
+    const { partyId, partyName } = this.state;
+    const { editPartyname, getAllParties } = this.props;
+    this.closeEditModal();
+    await editPartyname(partyId, partyName);
+    await getAllParties();
   };
 
   confirmDelete = async () => {
     const { deleteParty, getAllParties } = this.props;
     const { partyId } = this.state;
+    this.closeModal();
     await deleteParty(partyId);
     await getAllParties();
-    this.closeModal();
   };
 
   render() {
     const { parties } = this.props;
     const { partyList } = parties;
-    const { isAdmin, modalOpen } = this.state;
+    const { isAdmin, modalOpen, editModalOpen, partyName } = this.state;
 
     const listOfParties = partyList.map(party => (
       <tr key={party.id}>
@@ -48,7 +77,11 @@ class PartyPage extends Component {
         </td>
         {isAdmin ? (
           <td>
-            <button type="button" className="btn" onClick="sdmfk">
+            <button
+              type="button"
+              className="btn-edit"
+              onClick={() => this.editModal(party.name, party.id)}
+            >
               <i className="far fa-edit" />
             </button>
           </td>
@@ -84,6 +117,18 @@ class PartyPage extends Component {
             modalTitle="Delete"
           />
         )}
+        {editModalOpen && (
+          <EditModal
+            modalState={editModalOpen}
+            closeModal={this.closeEditModal}
+            confirmAction={this.confirmEdit}
+            partyName={partyName.name}
+            changePartyName={this.changePartyName}
+            modalMessage="Edit party"
+            modalTitle="Edit Party"
+          />
+        )}
+
         <div>
           {listOfParties.length ? (
             <table>
@@ -111,6 +156,7 @@ PartyPage.propTypes = {
   parties: PropTypes.shape().isRequired,
   deleteParty: PropTypes.func.isRequired,
   getAllParties: PropTypes.func.isRequired,
+  editPartyname: PropTypes.func.isRequired,
 };
 
 export default PartyPage;

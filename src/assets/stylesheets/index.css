@@ -26,6 +26,17 @@
   border: 1px solid red;
 }
 
+.btn-edit {
+  background-color: #fff;
+  color: blue;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-edit:hover {
+  border: 1px solid blue;
+}
+
 .vote-btn {
   background-color: #3c9848;
   color: white;
