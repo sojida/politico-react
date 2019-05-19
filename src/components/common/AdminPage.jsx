@@ -9,11 +9,20 @@ class AdminPage extends Component {
     this.state = {};
   }
 
-  createParty = e => {
+  createParty = async e => {
     e.preventDefault();
-    const { createParties } = this.props;
+    const { createParties, getAllParties } = this.props;
     const data = new FormData(e.target);
-    createParties(data);
+    await createParties(data);
+    await getAllParties();
+  };
+
+  createOffice = async e => {
+    e.preventDefault();
+    const { createOffice, getAllOffices } = this.props;
+    const data = new FormData(e.target);
+    await createOffice(data);
+    await getAllOffices();
   };
 
   render() {
@@ -68,7 +77,7 @@ class AdminPage extends Component {
             encType="multipart/form-data"
             name="partyForm"
             id="party-form"
-            onSubmit="return false"
+            onSubmit={e => this.createOffice(e)}
             className="admin-form"
           >
             <label htmlFor="party">
@@ -111,6 +120,9 @@ class AdminPage extends Component {
 
 AdminPage.propTypes = {
   createParties: PropTypes.func.isRequired,
+  createOffice: PropTypes.func.isRequired,
+  getAllParties: PropTypes.func.isRequired,
+  getAllOffices: PropTypes.func.isRequired,
 };
 
 export default AdminPage;

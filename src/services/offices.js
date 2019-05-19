@@ -43,8 +43,24 @@ const getOfficeResultById = id => {
     .catch(err => err);
 };
 
+const createOffices = data => {
+  return window
+    .fetch(`${url}/offices`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        Authorization: localStorage.token,
+      },
+      body: data,
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   getAllOffices,
   getOfficeById,
   getOfficeResultById,
+  createOffices,
 };
