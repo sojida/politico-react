@@ -5,7 +5,7 @@ import PartyPage from '../../container/partyPage.container';
 import PoliticianPage from './PoliticianPage';
 import ProfilePage from './ProfilePage';
 import ResultPage from './ResultPage';
-import AdminPage from './AdminPage';
+import AdminPage from '../../container/adminPage.container';
 
 const Navigation = ({ currentTab }) => {
   return (

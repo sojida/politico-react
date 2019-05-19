@@ -29,7 +29,23 @@ const getPartiesById = id => {
     .catch(err => err);
 };
 
+const createParty = data => {
+  return window
+    .fetch(`${url}/parties/`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        Authorization: localStorage.token,
+      },
+      body: data,
+    })
+    .then(res => res.json())
+    .then(res => res)
+    .catch(err => err);
+};
+
 export default {
   getAllParties,
   getPartiesById,
+  createParty,
 };
