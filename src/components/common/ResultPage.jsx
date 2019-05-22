@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import uniqid from 'uniqid';
 import OfficeList from './OfficeList';
 import offices from '../../services/offices';
+import Loader from './Loader';
 
 class ResultPage extends Component {
   constructor(props) {
@@ -9,13 +10,15 @@ class ResultPage extends Component {
     this.state = {
       selectedOffice: 1,
       officeResult: [],
+      loading: false,
     };
   }
 
   componentDidMount = async () => {
+    this.setState({ loading: true });
     const { selectedOffice } = this.state;
     const officesData = await offices.getOfficeResultById(selectedOffice);
-    this.setState({ officeResult: officesData.data });
+    this.setState({ officeResult: officesData.data, loading: false });
   };
 
   componentDidUpdate = async (prevProps, prevState) => {
@@ -31,7 +34,7 @@ class ResultPage extends Component {
   };
 
   render() {
-    const { officeResult } = this.state;
+    const { officeResult, loading } = this.state;
     const noResult = (
       <div className="center">
         <h2>No results in this office</h2>
@@ -53,6 +56,7 @@ class ResultPage extends Component {
 
     return (
       <div>
+        {loading && <Loader />}
         <div className="center">
           <h2>Select the office you want to see results</h2>
           <OfficeList changeOfficeFunc={this.changeOffice} />

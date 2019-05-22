@@ -29,13 +29,6 @@ class PoliticianPage extends Component {
     this.setState({ party: id });
   };
 
-  componentDidMount = () => {
-    const { party, office } = this.state;
-    const { getOfficeById, getPartyById } = this.props;
-    getOfficeById(office);
-    getPartyById(party);
-  };
-
   componentDidUpdate = (prevProp, prevState) => {
     const { party, office } = this.state;
     const { getOfficeById, getPartyById } = this.props;
@@ -96,13 +89,13 @@ class PoliticianPage extends Component {
     return (
       <div>
         <div className="center">
-          <h2>Choose the party you want to represent</h2>
-          <PartyList changePartyFunc={this.selectParty} />
-          {selectedParty.length ? partyElement : null}
-
           <h2>Choose the office you want to run for</h2>
           <OfficeList changeOfficeFunc={this.selectOffice} />
           {selectedOffice.length ? officeElement : null}
+
+          <h2>Choose the party you want to represent</h2>
+          <PartyList changePartyFunc={this.selectParty} />
+          {selectedParty.length ? partyElement : null}
 
           <div className="center">
             <Button

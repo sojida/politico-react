@@ -102,7 +102,7 @@ class VotePage extends Component {
               })
             }
           >
-            <i className="fas fa-user-check" />
+            Vote
           </button>
         </td>
       </tr>

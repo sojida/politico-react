@@ -320,7 +320,6 @@ td img {
   display: grid;
   object-fit: cover;
   overflow: hidden;
-  width: 400px;
   height: 200px;
 }
 
@@ -330,4 +329,38 @@ td img {
   height: 100%;
   object-position: center;
   justify-self: center;
+}
+
+@media (max-width: 425px) {
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+    transition: 0.3s;
+    width: 300px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    background: #587a5f;
+  }
+
+  .how-box-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    grid-gap: 5px;
+  }
+
+  .how-box {
+    padding: 5px;
+    color: white;
+    height: 100px;
+    width: 100px;
+    margin: 0 5px;
+  }
+
+  .register {
+    width: 100%;
+  }
 }
