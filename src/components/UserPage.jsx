@@ -55,7 +55,7 @@ class UserPage extends Component {
               onClick={() => this.changeTab('party-section')}
             />
             <SidebarButton
-              value="Politician"
+              value="Delcare Interest"
               className={currentTab === 'politician-section' ? className : null}
               iconClass="fas fa-hands-helping"
               onClick={() => this.changeTab('politician-section')}

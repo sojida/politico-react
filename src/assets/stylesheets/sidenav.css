@@ -13,6 +13,7 @@
   display: flex;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8);
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -49,4 +50,18 @@
 .tabcontent {
   padding: 10px;
   width: 100%;
+}
+
+@media (max-width: 425px) {
+  .tab button {
+    margin: 5px;
+    padding: 5px;
+    height: 30px;
+    font-size: 0.5rem;
+    outline: none;
+  }
+
+  .icon i {
+    font-size: 0.5rem;
+  }
 }

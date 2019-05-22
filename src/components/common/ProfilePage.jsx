@@ -2,22 +2,25 @@ import React, { Component } from 'react';
 import uniqid from 'uniqid';
 import ProfileCard from './ProfileCard';
 import vote from '../../services/vote';
+import Loader from './Loader';
 
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       myVotes: [],
+      loading: false,
     };
   }
 
   componentDidMount = async () => {
+    this.setState({ loading: true });
     const votes = await vote.getMyVotes();
-    this.setState({ myVotes: votes.data });
+    this.setState({ myVotes: votes.data, loading: false });
   };
 
   render() {
-    const { myVotes } = this.state;
+    const { myVotes, loading } = this.state;
     const listOfVotes = myVotes.map((info, index) => (
       <tr key={uniqid()}>
         <td>{index + 1}</td>
@@ -38,6 +41,7 @@ class ProfilePage extends Component {
     );
     return (
       <div>
+        {loading && <Loader />}
         <ProfileCard />
         {listOfVotes.length ? (
           <table className="result-table">
