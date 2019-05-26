@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
-import OfficeList from './OfficeList';
+import OfficeList from '../../container/officelist.container';
 import offices from '../../services/offices';
 import Loader from './Loader';
 

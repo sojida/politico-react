@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import VotePageContainer from '../../container/votePage.container';
 import PartyPage from '../../container/partyPage.container';
-import PoliticianPage from './PoliticianPage';
+import PoliticianPage from '../../container/politician.container';
 import ProfilePage from './ProfilePage';
 import ResultPage from './ResultPage';
 import AdminPage from '../../container/adminPage.container';

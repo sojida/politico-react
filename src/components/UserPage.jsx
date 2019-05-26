@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import LoadingBar from 'react-redux-loading-bar';
 import Navigation from './common/Navigation';
 import SidebarButton from './common/SidebarButton';
-import Header from './common/Header';
+import Header from '../container/header.container';
 import '../assets/stylesheets/sidenav.css';
 import Loader from './common/Loader';
 

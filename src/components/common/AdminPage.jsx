@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import OfficeList from './OfficeList';
+import OfficeList from '../../container/officelist.container';
 import '../../assets/stylesheets/admin.css';
 
 class AdminPage extends Component {
@@ -80,7 +80,7 @@ class AdminPage extends Component {
             name="partyForm"
             id="party-form"
             onSubmit={e => this.createParty(e)}
-            className="admin-form"
+            className="admin-form-party"
           >
             <label htmlFor="name">
               Party Name
@@ -123,7 +123,7 @@ class AdminPage extends Component {
             name="partyForm"
             id="party-form"
             onSubmit={e => this.createOffice(e)}
-            className="admin-form"
+            className="admin-form-office"
           >
             <label htmlFor="party">
               Office Name

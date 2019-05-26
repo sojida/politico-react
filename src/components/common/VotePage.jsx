@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
 import PropTypes from 'prop-types';
-import OfficeList from './OfficeList';
+import OfficeList from '../../container/officelist.container';
 import vote from '../../services/vote';
 import Modal from './Modal';
 import Loader from './Loader';
@@ -134,9 +134,14 @@ class VotePage extends Component {
 
         <div>
           {listOfCandidates.length ? (
-            <table>
-              <tbody>{listOfCandidates}</tbody>
-            </table>
+            <div>
+              <div className="center">
+                <h2>{`${voteCandidatesList[0].officename} Office`}</h2>
+              </div>
+              <table>
+                <tbody>{listOfCandidates}</tbody>
+              </table>
+            </div>
           ) : (
             <div>{noCandidates}</div>
           )}

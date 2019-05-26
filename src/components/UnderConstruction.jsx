@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './common/Header';
+import Header from '../container/header.container';
 import underConstructionPic from '../assets/images/under-constr.jpg';
 
 const UnderConstruction = () => {

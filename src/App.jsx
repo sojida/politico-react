@@ -7,7 +7,7 @@ import UnderConstruction from './components/UnderConstruction';
 import Footer from './components/common/Footer';
 import Hompage from './components/Hompage';
 import SignupPage from './components/SignupPage';
-import LoginPage from './components/LoginPage';
+import LoginPage from './container/login.container';
 import UserPage from './container/userPage.container';
 import store from './lib/store';
 

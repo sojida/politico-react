@@ -6,7 +6,7 @@ import Button from './common/Button';
 import Loader from './common/Loader';
 import authServices from '../services/auth.services';
 import handleErrorMessage from '../helpers/handleErrorMessage';
-import Header from './common/Header';
+import Header from '../container/header.container';
 import '../assets/stylesheets/formbox.css';
 
 class Signup extends Component {
