@@ -4,6 +4,10 @@ node_js: stable
 notification:
   email: false
 
+env:
+  global:
+  - CC_TEST_REPORTER_ID=f5bc9049ba49bc3fb3e4a531f857223a36e28826c5dbd8fed6a9be3fcf8a3bb6
+
 before_script:
   - npm i nyc --save-dev
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -14,3 +18,6 @@ script:
   npm test
 
 after_success: npm run coveralls
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
