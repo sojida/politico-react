@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 class partySelector extends Component {
   constructor(props) {
@@ -18,7 +17,12 @@ class partySelector extends Component {
     ));
     return (
       <div>
-        <select onChange={e => changePartyFunc(e.target.value)}>{list}</select>
+        <select onChange={e => changePartyFunc(e.target.value)}>
+          <option disabled selected>
+            Select a party
+          </option>
+          {list}
+        </select>
       </div>
     );
   }
@@ -29,9 +33,4 @@ partySelector.propTypes = {
   parties: PropTypes.shape().isRequired,
 };
 
-const mapStateToProps = ({ parties }) => ({ parties });
-
-export default connect(
-  mapStateToProps,
-  {}
-)(partySelector);
+export default partySelector;

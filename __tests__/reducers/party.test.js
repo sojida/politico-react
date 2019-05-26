@@ -63,4 +63,24 @@ describe('party reducers', () => {
       loading: false,
     });
   });
+
+  it('should handle FETCH_PARTY_SUCCESS', () => {
+    expect(
+      partyReducer([], {
+        type: actions.CREATE_PARTY_SUCCESS,
+      })
+    ).toEqual({
+      loading: false,
+    });
+  });
+
+  it('should handle FETCH_PARTY_FAILURE', () => {
+    expect(
+      partyReducer([], {
+        type: actions.CREATE_PARTY_FAILURE,
+      })
+    ).toEqual({
+      loading: false,
+    });
+  });
 });

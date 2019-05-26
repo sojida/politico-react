@@ -107,4 +107,30 @@ describe('candidate actions', () => {
       expect(store.getActions()).toEqual(expectedAction);
     });
   });
+
+  it('should create an action for get interested candidate success', async () => {
+    const interestees = [];
+    const expectedAction = [
+      {
+        type: types.GET_INTERESTEE_SUCCESS,
+        interestees,
+      },
+    ];
+    const store = mockStore({});
+
+    store.dispatch(actions.getInterestedCandidateSuccess(interestees));
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action for get interested candidate success', async () => {
+    const expectedAction = [
+      {
+        type: types.GET_INTERESTEE_FAILURE,
+      },
+    ];
+    const store = mockStore({});
+
+    store.dispatch(actions.getInterestedCandidateFailure());
+    expect(store.getActions()).toEqual(expectedAction);
+  });
 });

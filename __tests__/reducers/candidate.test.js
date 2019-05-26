@@ -43,4 +43,23 @@ describe('candidate reducers', () => {
       })
     ).toEqual({});
   });
+
+  it('should handle GET_INTERESTEE_SUCCESS', () => {
+    expect(
+      candidateReducer([], {
+        type: actions.GET_INTERESTEE_SUCCESS,
+        interestees: [{ fake: 'one' }],
+      })
+    ).toEqual({
+      interestedCandidates: [{ fake: 'one' }],
+    });
+  });
+
+  it('should handle GET_INTERESTEE_FAILURE', () => {
+    expect(
+      candidateReducer([], {
+        type: actions.GET_INTERESTEE_FAILURE,
+      })
+    ).toEqual({});
+  });
 });

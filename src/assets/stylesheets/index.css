@@ -347,7 +347,7 @@ td img {
   .how-box-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    justify-content: center;
+    justify-items: center;
     align-content: center;
     grid-gap: 5px;
   }
@@ -358,6 +358,10 @@ td img {
     height: 100px;
     width: 100px;
     margin: 0 5px;
+  }
+
+  .how-box p {
+    font-size: 0.6rem;
   }
 
   .register {

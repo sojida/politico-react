@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { notify } from 'react-notify-toast';
 import { Link, Redirect } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import authAction from '../../actions/auth.actions';
 import '../../assets/stylesheets/header.css';
 
 class Header extends Component {
@@ -106,11 +104,4 @@ Header.propTypes = {
   logout: PropTypes.func.isRequired,
 };
 
-const { logout } = authAction;
-
-const mapStateToProps = ({ auth }) => ({ auth });
-
-export default connect(
-  mapStateToProps,
-  { logout }
-)(Header);
+export default Header;

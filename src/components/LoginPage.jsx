@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import authAction from '../actions/auth.actions';
 import Input from './common/Input';
 import Button from './common/Button';
 import '../assets/stylesheets/formbox.css';
 import Loader from './common/Loader';
-import Header from './common/Header';
+import Header from '../container/header.container';
 
 class Login extends Component {
   constructor(props) {
@@ -83,10 +81,4 @@ Login.propTypes = {
   auth: PropTypes.shape().isRequired,
 };
 
-const { login } = authAction;
-
-const mapStateToProps = ({ auth }) => ({ auth });
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default Login;

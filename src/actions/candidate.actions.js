@@ -119,6 +119,8 @@ const candidateAction = {
   getCandidateFailure,
   getInterestedCandidates,
   createCandidate,
+  getInterestedCandidateSuccess,
+  getInterestedCandidateFailure,
 };
 
 export default candidateAction;

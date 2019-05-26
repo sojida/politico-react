@@ -14,13 +14,17 @@ const initialState = {
   },
 };
 
+const props = {
+  login: jest.fn(),
+};
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore(initialState);
 
 const LoginPageComponent = (
   <Provider store={store}>
-    <LoginPage auth={{ fake: 'yup' }} />
+    <LoginPage auth={{ fake: 'yup' }} {...props} />
   </Provider>
 );
 
@@ -28,5 +32,15 @@ describe('<LoginPage />', () => {
   it('renders login page', () => {
     const wrapper = shallow(LoginPageComponent);
     expect(wrapper.find('div'));
+  });
+});
+
+describe('<LoginPage />', () => {
+  it('renders login page', () => {
+    const inputEvent = { target: { id: 'name', value: 'pcp' } };
+    const wrapper = shallow(<LoginPage auth={{ fake: 'yup' }} {...props} />);
+    expect(wrapper.find('div'));
+    wrapper.instance().handleChange(inputEvent);
+    wrapper.instance().handleClick();
   });
 });

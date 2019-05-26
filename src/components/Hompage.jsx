@@ -1,7 +1,7 @@
 import React from 'react';
 import Jumbotron from './common/Jumbotron';
 import Homeinfo from './common/Homeinfo';
-import Header from './common/Header';
+import Header from '../container/header.container';
 
 const boxes1 = [
   {

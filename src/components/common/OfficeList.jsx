@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 class OfficeSelector extends Component {
   constructor(props) {
@@ -18,7 +17,12 @@ class OfficeSelector extends Component {
     ));
     return (
       <div>
-        <select onChange={e => changeOfficeFunc(e.target.value)}>{list}</select>
+        <select onChange={e => changeOfficeFunc(e.target.value)}>
+          <option disabled selected>
+            Select an office
+          </option>
+          {list}
+        </select>
       </div>
     );
   }
@@ -29,9 +33,4 @@ OfficeSelector.propTypes = {
   offices: PropTypes.shape().isRequired,
 };
 
-const mapStateToProps = ({ offices }) => ({ offices });
-
-export default connect(
-  mapStateToProps,
-  {}
-)(OfficeSelector);
+export default OfficeSelector;

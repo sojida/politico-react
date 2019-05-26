@@ -43,6 +43,7 @@ class ProfilePage extends Component {
       <div>
         {loading && <Loader />}
         <ProfileCard />
+        <h2 className="center">Candidates you voted for</h2>
         {listOfVotes.length ? (
           <table className="result-table">
             <tbody>

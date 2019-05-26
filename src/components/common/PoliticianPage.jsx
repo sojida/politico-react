@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import PartyList from './PartyList';
-import OfficeList from './OfficeList';
+import PartyList from '../../container/partylist.container';
+import OfficeList from '../../container/officelist.container';
 import Button from './Button';
-import officeAction from '../../actions/office.actions';
-import partyAction from '../../actions/party.actions';
-import candidateAction from '../../actions/candidate.actions';
 import handleImages from '../../helpers/handleImages';
 
 class PoliticianPage extends Component {
@@ -118,17 +114,4 @@ PoliticianPage.propTypes = {
   parties: PropTypes.shape().isRequired,
 };
 
-const { getOfficeById } = officeAction;
-const { getPartyById } = partyAction;
-const { declareInterest } = candidateAction;
-
-const mapStateToProps = ({ offices, parties, candidates }) => ({
-  offices,
-  parties,
-  candidates,
-});
-
-export default connect(
-  mapStateToProps,
-  { getOfficeById, getPartyById, declareInterest }
-)(PoliticianPage);
+export default PoliticianPage;
