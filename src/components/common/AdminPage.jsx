@@ -59,7 +59,7 @@ class AdminPage extends Component {
               })
             }
           >
-            <i className="fas fa-user-check" />
+            Accept
           </button>
         </td>
       </tr>

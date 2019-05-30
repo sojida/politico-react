@@ -54,8 +54,8 @@
 
 @media (max-width: 425px) {
   .tab button {
-    margin: 5px;
-    padding: 5px;
+    margin: 2px;
+    padding: 2px;
     height: 30px;
     font-size: 0.5rem;
     outline: none;

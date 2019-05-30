@@ -130,3 +130,9 @@
 .vote i:hover {
   font-size: 1.2rem;
 }
+
+@media (max-width: 425px) {
+  .modal-content {
+    width: 90%;
+  }
+}
