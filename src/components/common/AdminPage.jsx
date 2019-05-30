@@ -59,7 +59,7 @@ class AdminPage extends Component {
               })
             }
           >
-            <i className="fas fa-user-check" />
+            Accept
           </button>
         </td>
       </tr>
@@ -72,15 +72,14 @@ class AdminPage extends Component {
     );
 
     return (
-      <div>
-        <div className="create-party panel">
+      <div className="admin-grid">
+        <div className="create-party panel admin-form">
           <h3>Create New Party</h3>
           <form
             encType="multipart/form-data"
             name="partyForm"
             id="party-form"
             onSubmit={e => this.createParty(e)}
-            className="admin-form-party"
           >
             <label htmlFor="name">
               Party Name
@@ -116,14 +115,13 @@ class AdminPage extends Component {
           </form>
         </div>
 
-        <div className="create-party panel">
+        <div className="create-party panel admin-form">
           <h3>Create New Office</h3>
           <form
             encType="multipart/form-data"
             name="partyForm"
             id="party-form"
             onSubmit={e => this.createOffice(e)}
-            className="admin-form-office"
           >
             <label htmlFor="party">
               Office Name
@@ -153,7 +151,7 @@ class AdminPage extends Component {
           </form>
         </div>
 
-        <div className="inrterest-table panel">
+        <div className="inrterest-table panel admin-form">
           <h3>Interested Candidates</h3>
           <p>Select office to see candidates</p>
           <OfficeList changeOfficeFunc={this.changeOffice} />

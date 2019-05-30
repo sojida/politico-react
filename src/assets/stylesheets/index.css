@@ -13,6 +13,7 @@
 .btn {
   background-color: #3c9848;
   color: white;
+  cursor: pointer;
 }
 
 .btn-del {
@@ -360,11 +361,55 @@ td img {
     margin: 0 5px;
   }
 
+  .btn {
+    font-size: 0.5rem;
+  }
+
   .how-box p {
     font-size: 0.6rem;
   }
 
   .register {
     width: 100%;
+  }
+
+  table {
+    margin: 5px auto;
+    text-align: center;
+    width: 80%;
+  }
+
+  th {
+    width: 50px;
+    height: 20px;
+    padding: 5px 5px;
+    font-size: 0.7rem;
+  }
+
+  td {
+    padding: 5px;
+    width: 50px;
+    height: 20px;
+  }
+
+  td button {
+    padding: 5px;
+    width: 30px;
+    height: auto;
+  }
+
+  button i {
+    font-size: 0.5rem;
+  }
+
+  td img {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3c9848;
+    border-radius: 50%;
+  }
+
+  .edit-party-form input {
+    width: 200px;
   }
 }
