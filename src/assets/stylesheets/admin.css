@@ -58,3 +58,13 @@
   border: 1px solid var(--primary);
   color: var(--primary);
 }
+
+.edit-party-form input {
+  border: 1px solid black;
+  width: 250px;
+  height: 20px;
+  display: block;
+  margin: 2px auto;
+  padding: 1px 5px;
+  outline: none;
+}

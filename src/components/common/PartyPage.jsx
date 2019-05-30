@@ -124,8 +124,8 @@ class PartyPage extends Component {
             confirmAction={this.confirmEdit}
             partyName={partyName.name}
             changePartyName={this.changePartyName}
-            modalMessage="Edit party"
-            modalTitle="Edit Party"
+            modalMessage="Edit this party name"
+            modalTitle="Edit Party Name"
           />
         )}
 

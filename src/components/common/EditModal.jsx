@@ -35,7 +35,7 @@ class EditModal extends Component {
           </div>
           <div className="modal-body">
             <h4>{modalMessage}</h4>
-            <form>
+            <form className="edit-party-form">
               <input
                 type="text"
                 value={`${partyName}`}
