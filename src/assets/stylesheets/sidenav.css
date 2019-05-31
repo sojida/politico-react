@@ -52,6 +52,20 @@
   width: 100%;
 }
 
+@media (max-width: 900px) {
+  .tab button {
+    margin: 5px;
+    padding: 5px;
+    height: 30px;
+    font-size: 0.7rem;
+    outline: none;
+  }
+
+  .icon i {
+    font-size: 0.5rem;
+  }
+}
+
 @media (max-width: 425px) {
   .tab button {
     margin: 2px;

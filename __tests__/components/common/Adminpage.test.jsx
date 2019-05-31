@@ -49,8 +49,8 @@ describe('<AdminPage />', () => {
     const wrapper = shallow(<AdminPage {...props} />);
     const event = { preventDefault: jest.fn() };
     expect(wrapper.find('div'));
-    wrapper.find('.admin-form-party').simulate('submit');
-    wrapper.find('.admin-form-office').simulate('submit');
+    wrapper.find('.ad-form').simulate('submit');
+    wrapper.find('.ad-form2').simulate('submit');
     wrapper.instance().changeOffice(2);
     wrapper.instance().createOffice(event);
     wrapper.instance().createParty(event);
