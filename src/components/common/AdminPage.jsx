@@ -80,6 +80,7 @@ class AdminPage extends Component {
             name="partyForm"
             id="party-form"
             onSubmit={e => this.createParty(e)}
+            className="ad-form"
           >
             <label htmlFor="name">
               Party Name
@@ -122,6 +123,7 @@ class AdminPage extends Component {
             name="partyForm"
             id="party-form"
             onSubmit={e => this.createOffice(e)}
+            className="ad-form2"
           >
             <label htmlFor="party">
               Office Name
